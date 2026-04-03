@@ -1,25 +1,26 @@
 parameter,value,lower,upper,notes
-prevalence_endometrial_cancer,0.005,0.001,0.02,Illustrative occult cancer prevalence in preoperative colpocleisis population
-prevalence_postmenopausal_bleeding,0.15,0.05,0.35,Illustrative prevalence of bleeding symptoms in target population
+prevalence_endometrial_cancer,0.0035,0.0014,0.007,Base case set to midpoint between 0.14% occult endometrial carcinoma and 0.7% malignant uterine pathology reported in prolapse hysterectomy series
+prevalence_postmenopausal_bleeding,0.1,0.04,0.15,StatPearls and NCI-linked PMB literature report PMB in up to 10% of postmenopausal women with lower annual rates after the early postmenopausal years
+prob_bleeding_given_cancer,0.9,0.8,0.95,NCI summary of Clarke et al meta-analysis reports about 90% of women with endometrial cancer had postmenopausal bleeding
 cost_no_testing,0,0,0,No up-front testing cost
-cost_tvus,260,150,500,Replace with CMS-based technical plus professional estimate
-cost_emb,420,250,900,Replace with CMS-based office biopsy estimate
-cost_hsc_dnc,1850,1000,3500,Replace with CMS-based hysteroscopy plus D&C estimate
-cost_false_positive_workup,1850,1000,3500,Assumes false-positive pathway ends in hysteroscopy plus D&C
-cost_cancer_missed,25000,10000,60000,Illustrative excess downstream cost of missed preop cancer diagnosis
-cost_complication_minor,250,100,750,Illustrative minor complication management cost
-cost_complication_major,7500,3000,20000,Illustrative major complication management cost
-sens_tvus,0.82,0.65,0.95,Illustrative test performance
-spec_tvus,0.72,0.5,0.9,Illustrative test performance
-sens_emb,0.91,0.8,0.98,Illustrative test performance
-spec_emb,0.98,0.9,1,Illustrative test performance
-sens_hsc_dnc,0.97,0.9,1,Illustrative test performance
-spec_hsc_dnc,0.99,0.95,1,Illustrative test performance
-complication_minor_tvus,0.001,0,0.005,Illustrative probability
-complication_major_tvus,0,0,0.001,Illustrative probability
-complication_minor_emb,0.01,0.002,0.03,Illustrative probability
-complication_major_emb,0.001,0,0.005,Illustrative probability
-complication_minor_hsc_dnc,0.03,0.01,0.08,Illustrative probability
-complication_major_hsc_dnc,0.005,0.001,0.02,Illustrative probability
-utility_loss_false_positive,0,0,0.02,Optional placeholder for later QALY extension
-utility_loss_missed_cancer,0,0,0.25,Optional placeholder for later QALY extension
+cost_tvus,118.32,100.45,154.96,2025 CMS physician fee schedule carrier files CPT 76830 mean nonfacility amount across localities
+cost_emb,99.49,87,120.94,2025 CMS physician fee schedule carrier files CPT 58100 mean nonfacility amount across localities
+cost_hsc_dnc,1252.25,1046.54,1667.01,2025 CMS physician fee schedule carrier files CPT 58558 mean nonfacility amount across localities used as CMS-based procedural proxy
+cost_false_positive_workup,1252.25,1046.54,1667.01,Assumes positive screening generally leads to hysteroscopy with endometrial sampling CPT 58558
+cost_cancer_missed,39638,2066,118058,2022 Federal Register uterine cancer cost table based on SEER-Medicare reported 2021 dollars for initial continuing and last-year-of-life phases
+cost_complication_minor,250,100,750,Conservative management cost assumption for self-limited procedural complications
+cost_complication_major,7500,3000,20000,Conservative management cost assumption for major procedural complications
+sens_tvus,0.933,0.89,0.99,Recent postmenopausal cohort using 4 mm threshold reported 93.3% sensitivity and older PMB study reported 89% sensitivity
+spec_tvus,0.247,0.19,0.83,Recent postmenopausal cohort using 4 mm threshold reported 24.7% specificity with older PMB studies reporting substantially higher specificity
+sens_emb,0.9,0.5,1,2016 systematic review and meta-analysis found weighted sensitivity of endometrial sampling for cancer about 90% in PMB when hysteroscopy was reference
+spec_emb,0.99,0.98,1,2016 systematic review and meta-analysis reported specificity 98% to 100% for endometrial sampling
+sens_hsc_dnc,0.864,0.84,0.89,Systematic quantitative review of hysteroscopy reported pooled sensitivity 86.4% for endometrial cancer
+spec_hsc_dnc,0.992,0.991,0.993,Systematic quantitative review of hysteroscopy reported pooled specificity 99.2% for endometrial cancer
+complication_minor_tvus,0,0,0.001,TVUS has negligible procedural complication risk in this context
+complication_major_tvus,0,0,0.0001,TVUS has negligible procedural complication risk in this context
+complication_minor_emb,0.005,0.001,0.02,Low-risk office biopsy complication assumption anchored to generally safe outpatient EMB literature
+complication_major_emb,0.0005,0,0.002,Major EMB complications are rare and modeled conservatively
+complication_minor_hsc_dnc,0.01,0.005,0.03,Minor hysteroscopy or D&C complication assumption for sensitivity analysis
+complication_major_hsc_dnc,0.00085,0.0005,0.005,Systematic review reported 8 potentially serious complications in 9413 successful hysteroscopies
+utility_loss_false_positive,0,0,0.02,Unused in current base case
+utility_loss_missed_cancer,0,0,0.25,Unused in current base case

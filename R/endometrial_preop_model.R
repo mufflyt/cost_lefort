@@ -35,16 +35,36 @@ resolve_strategy_values <- function(strategy_row, params) {
 evaluate_strategy <- function(strategy_row, params) {
   prevalence_cancer <- lookup_param("prevalence_endometrial_cancer", params)
   prevalence_bleeding <- lookup_param("prevalence_postmenopausal_bleeding", params)
+  prob_bleeding_given_cancer <- lookup_param("prob_bleeding_given_cancer", params)
   cost_false_positive_workup <- lookup_param("cost_false_positive_workup", params)
   cost_missed_cancer <- lookup_param("cost_cancer_missed", params)
   cost_complication_minor <- lookup_param("cost_complication_minor", params)
   cost_complication_major <- lookup_param("cost_complication_major", params)
 
   strategy_values <- resolve_strategy_values(strategy_row, params)
-  test_rate <- dplyr::if_else(strategy_values$selective_if_bleeding, prevalence_bleeding, ifelse(strategy_values$uses_test, 1, 0))
-  true_positive <- test_rate * prevalence_cancer * strategy_values$test_sensitivity
-  false_negative <- prevalence_cancer - true_positive
-  false_positive <- test_rate * (1 - prevalence_cancer) * (1 - strategy_values$test_specificity)
+
+  cancer_with_bleeding <- prevalence_cancer * prob_bleeding_given_cancer
+  cancer_without_bleeding <- prevalence_cancer - cancer_with_bleeding
+  noncancer_with_bleeding <- max(prevalence_bleeding - cancer_with_bleeding, 0)
+  noncancer_without_bleeding <- (1 - prevalence_cancer) - noncancer_with_bleeding
+
+  if (strategy_values$selective_if_bleeding) {
+    test_rate <- prevalence_bleeding
+    true_positive <- cancer_with_bleeding * strategy_values$test_sensitivity
+    false_negative <- cancer_without_bleeding + (cancer_with_bleeding * (1 - strategy_values$test_sensitivity))
+    false_positive <- noncancer_with_bleeding * (1 - strategy_values$test_specificity)
+  } else if (strategy_values$uses_test) {
+    test_rate <- 1
+    true_positive <- prevalence_cancer * strategy_values$test_sensitivity
+    false_negative <- prevalence_cancer - true_positive
+    false_positive <- (1 - prevalence_cancer) * (1 - strategy_values$test_specificity)
+  } else {
+    test_rate <- 0
+    true_positive <- 0
+    false_negative <- prevalence_cancer
+    false_positive <- 0
+  }
+
   true_negative <- (1 - prevalence_cancer) - false_positive
   invasive_workups <- false_positive
   minor_complications <- test_rate * strategy_values$minor_complication_prob
