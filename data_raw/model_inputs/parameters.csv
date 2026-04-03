@@ -1,0 +1,25 @@
+parameter,value,lower,upper,notes
+prevalence_endometrial_cancer,0.005,0.001,0.02,Illustrative occult cancer prevalence in preoperative colpocleisis population
+prevalence_postmenopausal_bleeding,0.15,0.05,0.35,Illustrative prevalence of bleeding symptoms in target population
+cost_no_testing,0,0,0,No up-front testing cost
+cost_tvus,260,150,500,Replace with CMS-based technical plus professional estimate
+cost_emb,420,250,900,Replace with CMS-based office biopsy estimate
+cost_hsc_dnc,1850,1000,3500,Replace with CMS-based hysteroscopy plus D&C estimate
+cost_false_positive_workup,1850,1000,3500,Assumes false-positive pathway ends in hysteroscopy plus D&C
+cost_cancer_missed,25000,10000,60000,Illustrative excess downstream cost of missed preop cancer diagnosis
+cost_complication_minor,250,100,750,Illustrative minor complication management cost
+cost_complication_major,7500,3000,20000,Illustrative major complication management cost
+sens_tvus,0.82,0.65,0.95,Illustrative test performance
+spec_tvus,0.72,0.5,0.9,Illustrative test performance
+sens_emb,0.91,0.8,0.98,Illustrative test performance
+spec_emb,0.98,0.9,1,Illustrative test performance
+sens_hsc_dnc,0.97,0.9,1,Illustrative test performance
+spec_hsc_dnc,0.99,0.95,1,Illustrative test performance
+complication_minor_tvus,0.001,0,0.005,Illustrative probability
+complication_major_tvus,0,0,0.001,Illustrative probability
+complication_minor_emb,0.01,0.002,0.03,Illustrative probability
+complication_major_emb,0.001,0,0.005,Illustrative probability
+complication_minor_hsc_dnc,0.03,0.01,0.08,Illustrative probability
+complication_major_hsc_dnc,0.005,0.001,0.02,Illustrative probability
+utility_loss_false_positive,0,0,0.02,Optional placeholder for later QALY extension
+utility_loss_missed_cancer,0,0,0.25,Optional placeholder for later QALY extension

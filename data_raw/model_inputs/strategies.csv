@@ -1,0 +1,7 @@
+strategy,uses_test,test_name,test_cost,test_sensitivity,test_specificity,minor_complication_prob,major_complication_prob,selective_if_bleeding
+No testing,FALSE,none,cost_no_testing,NA,NA,0,0,FALSE
+TVUS for all,TRUE,tvus,cost_tvus,sens_tvus,spec_tvus,complication_minor_tvus,complication_major_tvus,FALSE
+EMB for all,TRUE,emb,cost_emb,sens_emb,spec_emb,complication_minor_emb,complication_major_emb,FALSE
+HSC_D&C for all,TRUE,hsc_dnc,cost_hsc_dnc,sens_hsc_dnc,spec_hsc_dnc,complication_minor_hsc_dnc,complication_major_hsc_dnc,FALSE
+Selective EMB if bleeding,TRUE,emb,cost_emb,sens_emb,spec_emb,complication_minor_emb,complication_major_emb,TRUE
+Selective TVUS if bleeding,TRUE,tvus,cost_tvus,sens_tvus,spec_tvus,complication_minor_tvus,complication_major_tvus,TRUE
