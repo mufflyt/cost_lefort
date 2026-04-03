@@ -1,0 +1,9 @@
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+data_raw/cms/*
+!data_raw/cms/.gitkeep
+output/*
+!output/.gitkeep
+tmp/
